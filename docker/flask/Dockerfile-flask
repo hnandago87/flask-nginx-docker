@@ -1,0 +1,10 @@
+FROM python:3
+RUN apt-get update
+ENV APP /src
+RUN mkdir $APP
+WORKDIR $APP
+EXPOSE 5000
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD [ "uwsgi", "--ini", "docker/flask/app.ini" ]

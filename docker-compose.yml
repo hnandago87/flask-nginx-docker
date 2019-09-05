@@ -1,0 +1,18 @@
+version: '3'
+services:
+  flask:
+    build:
+      context: .
+      dockerfile: ./docker/flask/Dockerfile-flask
+    environment:
+      ENV: "Development"
+    ports:
+      - 5000:5000
+    restart: always
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile-nginx
+    ports:
+      - 80:80
+    restart: always
